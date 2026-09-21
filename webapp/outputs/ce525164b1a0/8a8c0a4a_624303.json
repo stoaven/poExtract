@@ -1,0 +1,157 @@
+{
+  "file": "8a8c0a4a_624303.pdf",
+  "page_count": 3,
+  "metadata": {
+    "/Type": "/Info",
+    "/Producer": "Oracle BI Publisher 12.2.1.4.0"
+  },
+  "form_fields": {},
+  "labelled_fields": {
+    "attn_buyer": "G-STAR RAW C.V. (ADMIN USA)",
+    "bp_gstar_delivery_no": "",
+    "cargo_ready_date": "9/11/2026",
+    "email": "peter-yang@ability-china.com",
+    "tel": "8613813578626",
+    "fax": "",
+    "contact": "PETER",
+    "scan_flag": "N",
+    "cargo_cutoff": "9/18/2026",
+    "verified_by": "Lang, Stephen",
+    "seller_payer": "CHANGZHOU ABILITY GARMENTS CO.,LTD. NO.69 QINGYANG NORTH ROAD CHANGZHOU JIANGSU,CHINA JS CHINA",
+    "buyer_notify_party": "G-STAR RAW C.V. (ADMIN USA) JOAN AMSTERDAM-DUIVENDRECHT C/O GREEN",
+    "also_notify_party": "DELMAR GROUP ONE ROSENDALE ATTN: TEL;1",
+    "vessel_voyage_load_type": "",
+    "port_of_loading": "SHANGHAI, CHINA",
+    "place_of_receipt": "SHANGHAI, CHINA",
+    "port_of_discharge": "COLUMBUS, OH",
+    "place_of_delivery": "COLUMBUS, OH",
+    "commodity": "GARMENT AND TEXTILES",
+    "country_of_origin": "CHINA",
+    "cpo_no": "",
+    "incoterm": "FOB",
+    "mode": "OCEAN",
+    "pallets_stackable": "N",
+    "hazardous_materials": "N",
+    "tax_id": "",
+    "letter_of_credit_no": "",
+    "po_no": "",
+    "solid_wood_packing_material": "N",
+    "fda_regulated_product": "N",
+    "shipment_no": "",
+    "special_program_scan_flag": "",
+    "description_of_packages": "NO"
+  },
+  "po_details": [
+    {
+      "po_no": "4500393368",
+      "entries": [
+        {
+          "style": "D3003",
+          "qty": {
+            "value": "137",
+            "unit": "EA"
+          },
+          "pkg_count": {
+            "value": "7",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "70.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.460",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "0-E627-J384"
+        }
+      ],
+      "style": "D3003",
+      "sub_total": {
+        "raw": "137 EA 7 CTN 70.000 KG 0.460 CUMTR",
+        "qty": {
+          "value": "137",
+          "unit": "EA"
+        },
+        "pkg_count": {
+          "value": "7",
+          "unit": "CTN"
+        },
+        "weight": {
+          "value": "70.000",
+          "unit": "KG"
+        },
+        "volume": {
+          "value": "0.460",
+          "unit": "CUMTR"
+        }
+      }
+    },
+    {
+      "po_no": "4500393372",
+      "entries": [
+        {
+          "style": "D3003",
+          "qty": {
+            "value": "59",
+            "unit": "EA"
+          },
+          "pkg_count": {
+            "value": "3",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "30.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.200",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "0-E627-J384"
+        }
+      ],
+      "style": "D3003",
+      "sub_total": {
+        "raw": "59 EA 3 CTN 30.000 KG 0.200 CUMTR",
+        "qty": {
+          "value": "59",
+          "unit": "EA"
+        },
+        "pkg_count": {
+          "value": "3",
+          "unit": "CTN"
+        },
+        "weight": {
+          "value": "30.000",
+          "unit": "KG"
+        },
+        "volume": {
+          "value": "0.200",
+          "unit": "CUMTR"
+        }
+      }
+    }
+  ],
+  "booking_total": {
+    "raw": "196 EA 10 CTN 100.000 KG 0.660 CUMTR",
+    "qty": {
+      "value": "196",
+      "unit": "EA"
+    },
+    "pkg_count": {
+      "value": "10",
+      "unit": "CTN"
+    },
+    "weight": {
+      "value": "100.000",
+      "unit": "KG"
+    },
+    "volume": {
+      "value": "0.660",
+      "unit": "CUMTR"
+    }
+  }
+}

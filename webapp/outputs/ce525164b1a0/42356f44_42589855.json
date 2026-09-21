@@ -1,0 +1,249 @@
+{
+  "file": "42356f44_42589855.pdf",
+  "page_count": 3,
+  "metadata": {
+    "/Type": "/Info",
+    "/Producer": "Oracle BI Publisher 12.2.1.4.0"
+  },
+  "form_fields": {},
+  "labelled_fields": {
+    "attn_buyer": "G-STAR RAW C.V. (ADMIN USA)",
+    "bp_gstar_delivery_no": "",
+    "cargo_ready_date": "9/30/2026",
+    "email": "ELSA@FELIX-FASHION.COM",
+    "tel": "86057188157629",
+    "fax": "SPECIAL PROGRAM",
+    "contact": "ELSA",
+    "scan_flag": "N",
+    "cargo_cutoff": "10/9/2026",
+    "verified_by": "Lang, Stephen",
+    "seller_payer": "FELIX GARMENTS (HANGZHOU) CO.,LTD.14/F, YUANYANG BUILDING,NO.268 MOGANSHAN HANGZHOU HANG ZJ",
+    "buyer_notify_party": "G-STAR RAW C.V. (ADMIN USA) JOAN AMSTERDAM-DUIVENDRECHT C/O GREEN",
+    "also_notify_party": "DELMAR GROUP ONE ROSENDALE ATTN: TEL;1",
+    "vessel_voyage_load_type": "",
+    "port_of_loading": "SHANGHAI, CHINA",
+    "place_of_receipt": "SHANGHAI, CHINA",
+    "port_of_discharge": "COLUMBUS, OH",
+    "place_of_delivery": "COLUMBUS, OH",
+    "commodity": "APPAREL",
+    "country_of_origin": "CHINA",
+    "cpo_no": "",
+    "incoterm": "FOB",
+    "mode": "OCEAN",
+    "pallets_stackable": "N",
+    "hazardous_materials": "N",
+    "tax_id": "",
+    "letter_of_credit_no": "",
+    "po_no": "",
+    "solid_wood_packing_material": "N",
+    "fda_regulated_product": "N",
+    "shipment_no": "",
+    "special_program_scan_flag": "",
+    "description_of_packages": "PANT"
+  },
+  "po_details": [
+    {
+      "po_no": "4500398201",
+      "entries": [
+        {
+          "style": "D3042",
+          "qty": {
+            "value": "67",
+            "unit": "EA"
+          },
+          "pkg_count": {
+            "value": "3",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "49.570",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.200",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "22",
+          "sub_style": "5-E505-082"
+        }
+      ],
+      "style": "D3042",
+      "sub_total": {
+        "raw": "67 EA 3 CTN 49.570 KG 0.200 CUMTR",
+        "qty": {
+          "value": "67",
+          "unit": "EA"
+        },
+        "pkg_count": {
+          "value": "3",
+          "unit": "CTN"
+        },
+        "weight": {
+          "value": "49.570",
+          "unit": "KG"
+        },
+        "volume": {
+          "value": "0.200",
+          "unit": "CUMTR"
+        }
+      }
+    },
+    {
+      "po_no": "4500398255",
+      "entries": [
+        {
+          "style": "D3046",
+          "qty": {
+            "value": "36",
+            "unit": "EA"
+          },
+          "pkg_count": {
+            "value": "2",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "33.360",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.110",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "18",
+          "sub_style": "9-E068-6484"
+        }
+      ],
+      "style": "D3046",
+      "sub_total": {
+        "raw": "36 EA 2 CTN 33.360 KG 0.110 CUMTR",
+        "qty": {
+          "value": "36",
+          "unit": "EA"
+        },
+        "pkg_count": {
+          "value": "2",
+          "unit": "CTN"
+        },
+        "weight": {
+          "value": "33.360",
+          "unit": "KG"
+        },
+        "volume": {
+          "value": "0.110",
+          "unit": "CUMTR"
+        }
+      }
+    },
+    {
+      "po_no": "4500398257",
+      "entries": [
+        {
+          "style": "D3046",
+          "qty": {
+            "value": "82",
+            "unit": "EA"
+          },
+          "pkg_count": {
+            "value": "4",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "75.320",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.267",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "9-E068-6484"
+        }
+      ],
+      "style": "D3046",
+      "sub_total": {
+        "raw": "82 EA 4 CTN 75.320 KG 0.267 CUMTR",
+        "qty": {
+          "value": "82",
+          "unit": "EA"
+        },
+        "pkg_count": {
+          "value": "4",
+          "unit": "CTN"
+        },
+        "weight": {
+          "value": "75.320",
+          "unit": "KG"
+        },
+        "volume": {
+          "value": "0.267",
+          "unit": "CUMTR"
+        }
+      }
+    },
+    {
+      "po_no": "4500398260",
+      "entries": [
+        {
+          "style": "D3046",
+          "qty": {
+            "value": "120",
+            "unit": "EA"
+          },
+          "pkg_count": {
+            "value": "6",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "109.900",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.366",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "9-E068-6484"
+        }
+      ],
+      "style": "D3046",
+      "sub_total": {
+        "raw": "120 EA 6 CTN 109.900 KG 0.366 CUMTR",
+        "qty": {
+          "value": "120",
+          "unit": "EA"
+        },
+        "pkg_count": {
+          "value": "6",
+          "unit": "CTN"
+        },
+        "weight": {
+          "value": "109.900",
+          "unit": "KG"
+        },
+        "volume": {
+          "value": "0.366",
+          "unit": "CUMTR"
+        }
+      }
+    }
+  ],
+  "booking_total": {
+    "raw": "305 EA 15 CTN 268.150 KG 0.943 CUMTR",
+    "qty": {
+      "value": "305",
+      "unit": "EA"
+    },
+    "pkg_count": {
+      "value": "15",
+      "unit": "CTN"
+    },
+    "weight": {
+      "value": "268.150",
+      "unit": "KG"
+    },
+    "volume": {
+      "value": "0.943",
+      "unit": "CUMTR"
+    }
+  }
+}

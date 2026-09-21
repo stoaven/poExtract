@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>PDF 批量解析</title>
+<style>
+  :root { --fg: #222; --muted: #666; --bd: #d0d7de; --accent: #0969da; --hover: #f6f8fa; --card-bg: #fafbfc; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; max-width: 1100px; margin: 30px auto; padding: 0 16px; color: var(--fg); font-size: 14px; }
+  h1 { font-size: 20px; margin-bottom: 16px; }
+  h2 { font-size: 15px; margin: 24px 0 8px; }
+
+  .drop {
+    border: 2px dashed var(--bd);
+    padding: 28px;
+    text-align: center;
+    border-radius: 4px;
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+  .drop:hover, .drop.over { background: #eaf3ff; border-color: var(--accent); }
+  .drop p { margin: 4px 0; color: var(--muted); }
+  .drop strong { color: var(--fg); }
+  input[type=file] { display: none; }
+
+  .btn {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 6px;
+    text-decoration: none;
+  }
+  .btn:hover { background: #0860c7; }
+  .btn.secondary { background: #6e7781; }
+  .btn.secondary:hover { background: #5b626a; }
+
+  .file-list { margin-top: 16px; }
+
+  /* ========== Job 层级卡片 ========== */
+  .job-card {
+    border: 1px solid #cdd5dc;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    background: #fff;
+    overflow: hidden;
+  }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--card-bg);
+    border-bottom: 1px solid #e1e4e8;
+  }
+  .job-header .left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .job-header strong { font-size: 14px; color: var(--fg); }
+  .job-id-tag {
+    font-family: Consolas, monospace;
+    background: #fff;
+    border: 1px solid #d0d7de;
+    border-radius: 3px;
+    padding: 2px 8px;
+    font-size: 12px;
+    color: #444;
+  }
+  .job-header .actions { display: flex; align-items: center; }
+  .job-header .actions .meta { color: var(--muted); font-size: 12px; margin-right: 12px; }
+
+  /* 文件列表 (在 job 卡片内) */
+  .file-list-nested {
+    padding: 8px 14px 12px 14px;
+  }
+  .file-row {
+    padding: 6px 10px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    background: #fff;
+  }
+  .file-row:last-child { margin-bottom: 0; }
+  .row-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .file-row .name { font-family: Consolas, monospace; font-size: 13px; }
+  .file-row .actions a {
+    margin-left: 8px;
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--accent);
+    cursor: pointer;
+  }
+  .file-row .actions a:hover { text-decoration: underline; }
+  .file-row .actions a.toggle.active { color: #b30000; }
+
+  /* 行内预览 */
+  .row-preview {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--bd);
+  }
+  .row-preview[hidden] { display: none; }
+  .row-preview table { border-collapse: collapse; width: 100%; font-size: 12px; }
+  .row-preview th, .row-preview td {
+    border: 1px solid #d8dee4;
+    padding: 4px 8px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .row-preview th { background: #f6f8fa; font-weight: bold; position: sticky; top: 0; }
+  .row-preview-body {
+    overflow-x: auto;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+  .row-preview-loading {
+    padding: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  .empty { color: var(--muted); text-align: center; padding: 20px; }
+  .meta { color: var(--muted); font-size: 12px; }
+  .error-row { background: #fff0f0; border-color: #f5b7b7; }
+  .error-row .name { color: #b30000; }
+  .badge { display: inline-block; padding: 1px 6px; font-size: 11px; border-radius: 3px; background: #e6f0fb; color: #0969da; margin-left: 6px; }
+  .error-badge { background: #fdd; color: #900; }
+</style>
+</head>
+<body>
+
+<h1>PDF 批量解析 → Excel</h1>
+<p class="meta">
+  上传多份 BI Publisher VENDORS CARGO DELIVERY NOTICE PDF, 自动调用
+  <code>webapp/scripts/parse_pdf_fields.py</code> + <code>webapp/scripts/json_to_excel.py</code>,
+  在浏览器中预览 Excel 或下载. 单文件最大 {{ max_size_mb }} MB.
+</p>
+
+<!-- 上传区 -->
+<div class="drop" id="drop">
+  <p><strong>点击选择 PDF</strong> 或将文件拖到这里</p>
+  <p class="meta">支持一次选择多个文件 (.pdf)</p>
+  <input type="file" id="file-input" accept=".pdf" multiple>
+</div>
+<p>
+  <button class="btn" id="upload-btn" disabled>开始上传并解析</button>
+  <button class="btn secondary" id="load-jobs-btn">刷新已处理列表</button>
+</p>
+
+<!-- 本批处理结果 -->
+<h2>本批处理结果</h2>
+<div id="results" class="file-list"></div>
+
+<!-- 历史 job -->
+<h2>历史批次 (按时间倒序)</h2>
+<div id="jobs" class="file-list"></div>
+
+<script>
+const drop = document.getElementById('drop');
+const fileInput = document.getElementById('file-input');
+const uploadBtn = document.getElementById('upload-btn');
+const loadJobsBtn = document.getElementById('load-jobs-btn');
+const results = document.getElementById('results');
+const jobs = document.getElementById('jobs');
+let picked = [];
+
+drop.addEventListener('click', () => fileInput.click());
+drop.addEventListener('dragover', (e) => { e.preventDefault(); drop.classList.add('over'); });
+drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+drop.addEventListener('drop', (e) => {
+  e.preventDefault(); drop.classList.remove('over');
+  addFiles([...e.dataTransfer.files]);
+});
+fileInput.addEventListener('change', () => addFiles([...fileInput.files]));
+
+function addFiles(files) {
+  for (const f of files) {
+    if (!/\.pdf$/i.test(f.name)) continue;
+    picked.push(f);
+  }
+  uploadBtn.disabled = picked.length === 0;
+  drop.innerHTML =
+    `<p><strong>已选择 ${picked.length} 个文件</strong></p>` +
+    picked.map(f => `<p class="meta">${escapeHtml(f.name)}</p>`).join('') +
+    `<p class="meta">再次点击可继续添加</p>`;
+}
+
+uploadBtn.addEventListener('click', uploadNow);
+loadJobsBtn.addEventListener('click', loadJobs);
+
+async function uploadNow() {
+  if (picked.length === 0) return;
+  uploadBtn.disabled = true;
+  uploadBtn.textContent = '处理中...';
+  const fd = new FormData();
+  for (const f of picked) fd.append('files', f);
+  try {
+    const res = await fetch('/upload', { method: 'POST', body: fd });
+    const data = await res.json();
+    renderResults(data);
+  } catch (e) {
+    alert('上传失败: ' + e);
+  } finally {
+    picked = [];
+    uploadBtn.disabled = true;
+    uploadBtn.textContent = '开始上传并解析';
+    drop.innerHTML = '<p><strong>点击选择 PDF</strong> 或将文件拖到这里</p>' +
+      '<p class="meta">支持一次选择多个文件 (.pdf)</p>';
+  }
+  loadJobs();
+}
+
+/* ----------------------------------------
+ * 构造一个 job 卡片 (含 header + 文件列表)
+ * ---------------------------------------- */
+function buildJobCard({ jobId, mtime, files, errors, showBulkDownload = true }) {
+  const card = document.createElement('div');
+  card.className = 'job-card';
+
+  // header
+  const header = document.createElement('div');
+  header.className = 'job-header';
+  const totalCount = (files?.length || 0) + (errors?.length || 0);
+  const errorCount = errors?.length || 0;
+  const left = document.createElement('div');
+  left.className = 'left';
+  const badgeHtml = [
+    `<span class="badge">${files?.length || 0} 文件</span>`,
+    errorCount > 0 ? `<span class="badge error-badge">${errorCount} 失败</span>` : '',
+  ].join('');
+  left.innerHTML = `
+    <span style="font-size:14px">📦</span>
+    <strong>Job</strong>
+    <span class="job-id-tag">${escapeHtml(jobId)}</span>
+    ${badgeHtml}
+    ${mtime ? `<span class="meta">${new Date(mtime * 1000).toLocaleString()}</span>` : ''}
+  `;
+  header.appendChild(left);
+
+  const actions = document.createElement('div');
+  actions.className = 'actions';
+  if (showBulkDownload && files && files.length > 0) {
+    const a = document.createElement('a');
+    a.className = 'btn secondary';
+    a.href = `/download-all/${jobId}`;
+    a.textContent = '批量下载 zip';
+    actions.appendChild(a);
+  }
+  header.appendChild(actions);
+  card.appendChild(header);
+
+  // 文件列表 (在卡片内)
+  const list = document.createElement('div');
+  list.className = 'file-list-nested';
+
+  // 错误行优先显示
+  for (const e of errors || []) {
+    const div = document.createElement('div');
+    div.className = 'file-row error-row';
+    div.innerHTML = `
+      <div class="row-main">
+        <div>
+          <span class="name">${escapeHtml(e.file)}</span>
+          <span class="badge error-badge">错误</span>
+        </div>
+        <div class="meta">${escapeHtml(e.error)}</div>
+      </div>`;
+    list.appendChild(div);
+  }
+
+  // 成功文件行
+  for (const r of files || []) {
+    const row = buildFileRow({
+      name: r.display_name,
+      badges: [`${r.rows} 行`, `${r.page_count} 页`],
+      actionLinks: [{
+        href: `/download/${jobId}/${encodeURIComponent(r.xlsx_name)}`,
+        text: '下载', download: true,
+      }],
+      xlsxKey: r.xlsx_name,
+      jobId: jobId,
+    });
+    list.appendChild(row);
+  }
+
+  if (list.children.length > 0) {
+    card.appendChild(list);
+  } else {
+    const empty = document.createElement('div');
+    empty.className = 'file-list-nested';
+    empty.innerHTML = '<div class="meta">本 job 无文件</div>';
+    card.appendChild(empty);
+  }
+
+  return card;
+}
+
+/* ----------------------------------------
+ * 构造单个文件行 (可内嵌预览)
+ * ---------------------------------------- */
+function buildFileRow({ name, badges = [], actionLinks = [], xlsxKey, jobId }) {
+  const row = document.createElement('div');
+  row.className = 'file-row';
+
+  const main = document.createElement('div');
+  main.className = 'row-main';
+  const info = document.createElement('div');
+  info.innerHTML =
+    `<span class="name">${escapeHtml(name)}</span>` +
+    badges.map(b => `<span class="badge">${escapeHtml(b)}</span>`).join('');
+  const actions = document.createElement('div');
+  actions.className = 'actions';
+  if (xlsxKey && jobId) {
+    const btn = document.createElement('a');
+    btn.textContent = '预览';
+    btn.href = '#';
+    btn.className = 'toggle';
+    btn.onclick = (e) => {
+      e.preventDefault();
+      togglePreview(btn, row);
+    };
+    actions.appendChild(btn);
+  }
+  for (const a of actionLinks) {
+    const link = document.createElement('a');
+    link.href = a.href;
+    if (a.download) link.setAttribute('download', '');
+    link.textContent = a.text;
+    actions.appendChild(link);
+  }
+  main.appendChild(info);
+  main.appendChild(actions);
+  row.appendChild(main);
+
+  if (xlsxKey && jobId) {
+    const preview = document.createElement('div');
+    preview.className = 'row-preview';
+    preview.setAttribute('hidden', '');
+    preview.dataset.jobId = jobId;
+    preview.dataset.xlsxName = xlsxKey;
+    row.appendChild(preview);
+  }
+
+  return row;
+}
+
+async function togglePreview(btn, row) {
+  const preview = row.querySelector('.row-preview');
+  const isHidden = preview.hasAttribute('hidden');
+
+  if (!isHidden) {
+    preview.setAttribute('hidden', '');
+    btn.textContent = '预览';
+    btn.classList.remove('active');
+    return;
+  }
+
+  btn.textContent = '加载中...';
+  if (!preview.dataset.loaded) {
+    preview.innerHTML = '<div class="row-preview-loading">加载中...</div>';
+    const url = `/preview/${preview.dataset.jobId}/${encodeURIComponent(preview.dataset.xlsxName)}`;
+    try {
+      const res = await fetch(url);
+      const html = await res.text();
+      const m = html.match(/<table[\s\S]*?<\/table>/);
+      const tableHtml = m ? m[0] : '<div class="row-preview-loading">无数据</div>';
+      preview.innerHTML = `<div class="row-preview-body">${tableHtml}</div>`;
+      preview.dataset.loaded = '1';
+    } catch (e) {
+      preview.innerHTML = `<div class="row-preview-loading">加载失败: ${escapeHtml(String(e))}</div>`;
+      btn.textContent = '重试';
+      return;
+    }
+  }
+  preview.removeAttribute('hidden');
+  btn.textContent = '收起';
+  btn.classList.add('active');
+}
+
+function renderResults(data) {
+  results.innerHTML = '';
+  const successCount = data.results?.length || 0;
+  const errorCount = data.errors?.length || 0;
+  if (successCount === 0 && errorCount === 0) {
+    results.innerHTML = '<div class="empty">本批无文件</div>';
+    return;
+  }
+  const card = buildJobCard({
+    jobId: data.job_id,
+    mtime: Math.floor(Date.now() / 1000),
+    files: data.results || [],
+    errors: data.errors || [],
+    showBulkDownload: successCount > 1,
+  });
+  results.appendChild(card);
+}
+
+async function loadJobs() {
+  const res = await fetch('/list');
+  const data = await res.json();
+  jobs.innerHTML = '';
+  if (!data.jobs || data.jobs.length === 0) {
+    jobs.innerHTML = '<div class="empty">暂无历史批次</div>';
+    return;
+  }
+  for (const j of data.jobs) {
+    // 历史批次的每个 xlsx 渲染为最小 row
+    const fileRows = j.files.map(f => ({
+      display_name: f,
+      rows: '',
+      page_count: '',
+      xlsx_name: f,
+    }));
+    const card = buildJobCard({
+      jobId: j.job_id,
+      mtime: j.mtime,
+      files: fileRows,
+      errors: [],
+      showBulkDownload: j.files.length > 1,
+    });
+    jobs.appendChild(card);
+  }
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+loadJobs();
+</script>
+</body>
+</html>

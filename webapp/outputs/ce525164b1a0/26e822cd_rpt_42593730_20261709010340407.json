@@ -1,0 +1,469 @@
+{
+  "file": "26e822cd_rpt_42593730_20261709010340407.pdf",
+  "page_count": 3,
+  "metadata": {
+    "/Type": "/Info",
+    "/Producer": "Oracle BI Publisher 12.2.1.4.0"
+  },
+  "form_fields": {},
+  "labelled_fields": {
+    "attn_buyer": "AMERICA TODAY",
+    "cargo_ready_date": "9/25/2026",
+    "email": "QUEENIE@CZSWEATER.COM",
+    "tel": "FAX:",
+    "fax": "",
+    "contact": "QUEENIE",
+    "scan_flag": "N",
+    "cargo_cutoff": "",
+    "verified_by": "Wu, Kimmy",
+    "delivery_no": "",
+    "description_of_packages": "LADIES' KNITTED PULLOVER",
+    "order_nr": "154 CARTON",
+    "seller_payer": "CHANGZHOU CAIBO INTERNATIONAL CO.,LTDROOM 508, NO.25 TAIHU MIDDLE CHANGZHOU CAIBO INTERNATIONAL CO.,LTD ROAD, XINBEI, 213022 CHINA",
+    "buyer_notify_party": "AMERICA TODAY DIEMERME DIEMEN THE VESSEL",
+    "also_notify_party": "",
+    "vessel_voyage_load_type": "537879",
+    "port_of_loading": "SHANGHAI, CHINA",
+    "place_of_receipt": "SHANGHAI, CHINA",
+    "port_of_discharge": "AMSTERDAM,",
+    "place_of_delivery": "AMSTERDAM,",
+    "commodity": "APPAREL",
+    "country_of_origin": "",
+    "cpo_no": "",
+    "incoterm": "FOB",
+    "mode": "AIR",
+    "pallets_stackable": "N",
+    "hazardous_materials": "N",
+    "tax_id": "",
+    "letter_of_credit_no": "",
+    "po_no": "389500",
+    "solid_wood_packing_material": "N",
+    "fda_regulated_product": "N",
+    "shipment_no": "",
+    "special_program_scan_flag": ""
+  },
+  "po_details": [
+    {
+      "po_no": "389500",
+      "entries": [
+        {
+          "style": "222200",
+          "qty": {
+            "value": "64",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "4",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "24.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.288",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "16",
+          "sub_style": "2451-021-L"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "160",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "8",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "48.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.576",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "2451-021-M"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "224",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "12",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "72.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.864",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "19",
+          "sub_style": "2451-021-S"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "48",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "3",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "18.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.216",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "16",
+          "sub_style": "2451-021-XL"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "184",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "10",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "60.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.720",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "18",
+          "sub_style": "2451-021-XS"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "120",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "5",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "30.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.360",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "24",
+          "sub_style": "2451-021-XXS"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "96",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "5",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "30.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.360",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "19",
+          "sub_style": "2451-098-L"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "240",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "12",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "72.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.864",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "2451-098-M"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "336",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "17",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "102.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "1.224",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "2451-098-S"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "72",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "5",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "30.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.360",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "14",
+          "sub_style": "2451-098-XL"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "276",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "14",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "84.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "1.008",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "2451-098-XS"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "180",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "8",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "48.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.576",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "22",
+          "sub_style": "2451-098-XXS"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "80",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "4",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "24.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.288",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "2451-800-L"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "200",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "10",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "60.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.720",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "2451-800-M"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "280",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "14",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "84.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "1.008",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "20",
+          "sub_style": "2451-800-S"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "60",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "4",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "24.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.288",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "15",
+          "sub_style": "2451-800-XL"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "230",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "12",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "72.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.864",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "19",
+          "sub_style": "2451-800-XS"
+        },
+        {
+          "style": "222200",
+          "qty": {
+            "value": "150",
+            "unit": "PCS"
+          },
+          "pkg_count": {
+            "value": "7",
+            "unit": "CTN"
+          },
+          "weight": {
+            "value": "42.000",
+            "unit": "KG"
+          },
+          "volume": {
+            "value": "0.504",
+            "unit": "CUMTR"
+          },
+          "qty_per_pkg": "21",
+          "sub_style": "2451-800-XXS"
+        }
+      ],
+      "style": "222200",
+      "sub_total": {
+        "raw": "3000 PCS 154 CTN 924.000 KG 11.088 CUMTR",
+        "qty": {
+          "value": "3000",
+          "unit": "PCS"
+        },
+        "pkg_count": {
+          "value": "154",
+          "unit": "CTN"
+        },
+        "weight": {
+          "value": "924.000",
+          "unit": "KG"
+        },
+        "volume": {
+          "value": "11.088",
+          "unit": "CUMTR"
+        }
+      }
+    }
+  ],
+  "booking_total": {
+    "raw": "3000 PCS 154 CTN 924.000 KG 11.088 CUMTR",
+    "qty": {
+      "value": "3000",
+      "unit": "PCS"
+    },
+    "pkg_count": {
+      "value": "154",
+      "unit": "CTN"
+    },
+    "weight": {
+      "value": "924.000",
+      "unit": "KG"
+    },
+    "volume": {
+      "value": "11.088",
+      "unit": "CUMTR"
+    }
+  }
+}
