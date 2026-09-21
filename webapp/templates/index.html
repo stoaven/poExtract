@@ -69,8 +69,11 @@
     font-size: 12px;
     color: #444;
   }
-  .job-header .actions { display: flex; align-items: center; }
+  .job-header .actions { display: flex; align-items: center; gap: 8px; }
   .job-header .actions .meta { color: var(--muted); font-size: 12px; margin-right: 12px; }
+  .btn.danger { background: #b30000; }
+  .btn.danger:hover { background: #900; }
+  .btn.small { padding: 4px 10px; font-size: 12px; }
 
   /* 文件列表 (在 job 卡片内) */
   .file-list-nested {
@@ -249,11 +252,22 @@ function buildJobCard({ jobId, mtime, files, errors, showBulkDownload = true }) 
   actions.className = 'actions';
   if (showBulkDownload && files && files.length > 0) {
     const a = document.createElement('a');
-    a.className = 'btn secondary';
+    a.className = 'btn secondary small';
     a.href = `/download-all/${jobId}`;
     a.textContent = '批量下载 zip';
     actions.appendChild(a);
   }
+  // 删除按钮 (本批处理结果卡片也支持)
+  const delBtn = document.createElement('button');
+  delBtn.type = 'button';
+  delBtn.className = 'btn danger small';
+  delBtn.textContent = '删除';
+  delBtn.dataset.jobId = jobId;
+  delBtn.onclick = (e) => {
+    e.preventDefault();
+    onDeleteJob(delBtn, card, files?.length || 0);
+  };
+  actions.appendChild(delBtn);
   header.appendChild(actions);
   card.appendChild(header);
 
@@ -427,6 +441,35 @@ async function loadJobs() {
       showBulkDownload: j.files.length > 1,
     });
     jobs.appendChild(card);
+  }
+}
+
+async function onDeleteJob(btn, card, fileCount) {
+  const jobId = btn.dataset.jobId;
+  if (!confirm(`确认删除 job ${jobId}?\n该批次包含 ${fileCount} 个 Excel 文件, 删除后无法恢复。`)) {
+    return;
+  }
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '删除中...';
+  try {
+    const res = await fetch(`/delete/${encodeURIComponent(jobId)}`, { method: 'DELETE' });
+    const data = await res.json();
+    if (!res.ok || !data.ok) {
+      throw new Error(data.error || `HTTP ${res.status}`);
+    }
+    // 从 DOM 移除 job 卡片
+    card.remove();
+    // 若是本批处理结果区, 把空状态显示出来
+    if (results.contains(card) && results.querySelectorAll('.job-card').length === 0) {
+      results.innerHTML = '<div class="empty">本批无文件</div>';
+    }
+    // 刷新历史列表
+    loadJobs();
+  } catch (e) {
+    alert(`删除失败: ${e}`);
+    btn.disabled = false;
+    btn.textContent = originalText;
   }
 }
 

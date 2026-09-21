@@ -219,6 +219,26 @@ def download_all(job_id: str):
     )
 
 
+@app.route("/delete/<job_id>", methods=["DELETE", "POST"])
+def delete_job(job_id: str):
+    """删除整个 job 目录 (含其下所有生成的 JSON/XLSX)."""
+    if not re.fullmatch(r"[A-Za-z0-9_\-]{1,64}", job_id):
+        return jsonify({"error": "非法的 job_id"}), 400
+    job_dir = OUTPUT_DIR / job_id
+    # 防路径注入: 限定在 OUTPUT_DIR 下
+    try:
+        job_dir_resolved = job_dir.resolve()
+        output_resolved = OUTPUT_DIR.resolve()
+        if not job_dir_resolved.is_relative_to(output_resolved):
+            return jsonify({"error": "路径越界"}), 400
+    except ValueError:
+        return jsonify({"error": "路径解析失败"}), 400
+    if not job_dir.exists() or not job_dir.is_dir():
+        return jsonify({"error": "job 不存在"}), 404
+    shutil.rmtree(job_dir)
+    return jsonify({"ok": True, "deleted": job_id})
+
+
 @app.route("/list")
 def list_jobs():
     """列出所有已生成的 job (按修改时间排序)."""
