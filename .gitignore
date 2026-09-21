@@ -1,0 +1,34 @@
+# Python 运行时产物
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# 运行时生成的 PDF 输入与 JSON/XLSX 输出
+*.pdf
+*.json
+*.xlsx
+!Booking Form - Air.xlsx
+
+# Webapp 上传与输出
+webapp/uploads/
+webapp/outputs/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 环境
+.env
+venv/
+.venv/
